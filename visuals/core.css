@@ -1,0 +1,205 @@
+/* Chapter 1 visual-design prototype. Components are reusable across later lessons. */
+.visual-prototype .vf-visual {
+  --vf-blue: #2563eb;
+  --vf-cyan: #0891b2;
+  --vf-violet: #7c3aed;
+  --vf-amber: #d97706;
+  --vf-green: #059669;
+  --vf-danger: #dc2626;
+  position: relative;
+  isolation: isolate;
+  margin: 1.45rem 0 1.75rem;
+  overflow: hidden;
+  border: 1px solid #d9e2f0;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 0 0, rgba(37, 99, 235, .10), transparent 22rem),
+    radial-gradient(circle at 100% 100%, rgba(124, 58, 237, .08), transparent 22rem),
+    linear-gradient(145deg, #ffffff, #f8faff);
+  box-shadow: 0 18px 45px rgba(23, 32, 51, .09);
+  padding: clamp(18px, 3vw, 28px);
+}
+
+.visual-prototype .vf-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .32;
+  background-image:
+    linear-gradient(rgba(113, 128, 150, .08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(113, 128, 150, .08) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: linear-gradient(to bottom, black, transparent 62%);
+}
+
+.visual-prototype .vf-heading {
+  display: grid;
+  gap: 3px;
+  margin-bottom: 20px;
+}
+
+.visual-prototype .vf-eyebrow {
+  color: #547093;
+  font-size: .7rem;
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.visual-prototype .vf-title {
+  color: #172033;
+  font: 700 clamp(1.05rem, 2vw, 1.38rem)/1.25 Inter, system-ui, sans-serif;
+  letter-spacing: -.018em;
+}
+
+.visual-prototype .vf-caption {
+  margin: 18px 0 0;
+  color: #5f6b7d;
+  font-size: .9rem;
+  line-height: 1.55;
+}
+
+.visual-prototype .vf-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.visual-prototype .vf-icon-wrap,
+.visual-prototype .vf-card-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  border: 1px solid color-mix(in srgb, currentColor 24%, transparent);
+  border-radius: 13px;
+  background: color-mix(in srgb, currentColor 9%, white);
+}
+
+.visual-prototype [data-tone='blue'] { --vf-tone: var(--vf-blue); }
+.visual-prototype [data-tone='cyan'] { --vf-tone: var(--vf-cyan); }
+.visual-prototype [data-tone='violet'] { --vf-tone: var(--vf-violet); }
+.visual-prototype [data-tone='amber'] { --vf-tone: var(--vf-amber); }
+.visual-prototype [data-tone='green'] { --vf-tone: var(--vf-green); }
+.visual-prototype [data-tone='danger'] { --vf-tone: var(--vf-danger); }
+
+.visual-prototype .vf-pipeline {
+  display: grid;
+  grid-template-columns: repeat(calc(var(--vf-stage-count) * 2 - 1), minmax(0, auto));
+  align-items: stretch;
+  gap: 0;
+}
+
+.visual-prototype .vf-stage {
+  min-width: 0;
+  min-height: 184px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid color-mix(in srgb, var(--vf-tone) 28%, #d9e2f0);
+  border-top: 4px solid var(--vf-tone);
+  border-radius: 17px;
+  background: rgba(255, 255, 255, .92);
+  padding: 16px;
+  box-shadow: 0 9px 22px rgba(23, 32, 51, .07);
+}
+
+.visual-prototype .vf-stage-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 13px;
+  color: var(--vf-tone);
+}
+
+.visual-prototype .vf-stage strong {
+  color: #172033;
+  font-size: .98rem;
+  line-height: 1.25;
+}
+
+.visual-prototype .vf-stage > span:not(.vf-stage-top):not(.vf-step) {
+  margin-top: 5px;
+  color: #5f6b7d;
+  font-size: .81rem;
+  line-height: 1.42;
+}
+
+.visual-prototype .vf-step {
+  color: #8a96a8;
+  font-size: .67rem;
+  font-weight: 900;
+  letter-spacing: .1em;
+}
+
+.visual-prototype .vf-branch {
+  display: inline-flex;
+  align-self: flex-start;
+  margin-top: 12px;
+  border-radius: 999px;
+  background: #fff1f2;
+  color: #9f1239;
+  padding: 4px 8px;
+  font-size: .66rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.visual-prototype .vf-volume-track {
+  height: 7px;
+  margin-top: auto;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #eef2f7;
+}
+
+.visual-prototype .vf-volume-track span {
+  display: block;
+  width: var(--vf-volume);
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--vf-tone), color-mix(in srgb, var(--vf-tone) 55%, white));
+}
+
+.visual-prototype .vf-connector {
+  position: relative;
+  width: 34px;
+  min-width: 20px;
+  align-self: center;
+  height: 2px;
+  background: #a8b4c5;
+}
+
+.visual-prototype .vf-connector::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-top: 2px solid #7e8ca1;
+  border-right: 2px solid #7e8ca1;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.visual-prototype .vf-axis {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #6b7a91;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .03em;
+}
+
+.visual-prototype .vf-axis i {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, #d6deea, #718096);
+}
+
+.visual-prototype .vf-axis-top { margin: -2px 0 12px; }
+.visual-prototype .vf-axis-bottom { margin: 12px 0 -2px; }
+.visual-prototype .vf-axis-bottom i { background: linear-gradient(90deg, #718096, #d6deea); }
