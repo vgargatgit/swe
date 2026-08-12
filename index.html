@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="auth-locked">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="auth.css" />
   <link rel="stylesheet" href="visuals/core.css" />
   <link rel="stylesheet" href="visuals/components.css" />
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
@@ -29,14 +30,60 @@
       }
     });
   </script>
+  <script src="auth.js" defer></script>
 </head>
 <body>
+  <section id="auth-gate" class="auth-gate" aria-labelledby="auth-title">
+    <div class="auth-card">
+      <div class="auth-brand"><img src="favicon.svg" alt="" /> SWE Field Guide</div>
+      <div class="auth-lock-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="5" y="10" width="14" height="11" rx="2"></rect>
+          <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+          <path d="M12 14v3"></path>
+        </svg>
+      </div>
+      <span class="auth-eyebrow">Private course access</span>
+      <h1 id="auth-title">Open the field guide</h1>
+      <p class="auth-intro">Enter your credentials to load the course and its lesson content.</p>
+
+      <form id="auth-form" class="auth-form" novalidate>
+        <label class="auth-field">
+          <span>Username</span>
+          <input id="auth-username" name="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" required />
+        </label>
+
+        <label class="auth-field">
+          <span>Password</span>
+          <span class="auth-input-wrap">
+            <input id="auth-password" name="password" type="password" autocomplete="current-password" required />
+            <button id="auth-reveal" class="auth-reveal" type="button" aria-controls="auth-password" aria-pressed="false">Show</button>
+          </span>
+        </label>
+
+        <button class="auth-submit" type="submit">Unlock guide</button>
+        <p id="auth-status" class="auth-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <p class="auth-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path>
+          <path d="m9 12 2 2 4-4"></path>
+        </svg>
+        <span>The password is checked against a PBKDF2-SHA-256 verifier. This browser remains signed in for 12 hours or until logout.</span>
+      </p>
+    </div>
+  </section>
+
+  <noscript><p class="auth-noscript">JavaScript is required to authenticate and open this site.</p></noscript>
+
   <header class="site-header">
     <a class="brand" href="#/"><img src="favicon.svg" alt="" /> SWE Field Guide</a>
     <nav aria-label="Primary navigation">
       <a href="#/">Course</a>
       <a href="#/roadmap">Roadmap</a>
       <a href="#/about">How to use</a>
+      <button id="auth-logout" class="auth-logout" type="button">Log out</button>
     </nav>
   </header>
 
@@ -46,72 +93,72 @@
     <p>Practical backend/system-design lessons. Built from the day-by-day course notes.</p>
   </footer>
 
-  <script src="data/roadmap.js"></script>
-  <script src="data/lessons.js"></script>
-  <script src="lessons/day-01-rate-limiting.js"></script>
-  <script src="lessons/day-01-rate-limiting-part-2.js"></script>
-  <script src="lessons/day-01-rate-limiting-part-3.js"></script>
-  <script src="lessons/day-01-rate-limiting-part-4.js"></script>
-  <script src="lessons/day-02-caching.js"></script>
-  <script src="lessons/day-03-load-balancing.js"></script>
-  <script src="lessons/day-04-reverse-proxies.js"></script>
-  <script src="lessons/day-05-api-gateways.js"></script>
-  <script src="lessons/day-06-cicd.js"></script>
-  <script src="lessons/day-07-docker.js"></script>
-  <script src="lessons/day-08-kubernetes.js"></script>
-  <script src="lessons/day-09-service-discovery.js"></script>
-  <script src="lessons/day-10-circuit-breakers.js"></script>
-  <script src="lessons/day-11-timeouts.js"></script>
-  <script src="lessons/day-12-retries.js"></script>
-  <script src="lessons/day-13-exponential-backoff.js"></script>
-  <script src="lessons/day-14-idempotency.js"></script>
-  <script src="lessons/day-15-message-queues.js"></script>
-  <script src="lessons/day-16-pubsub.js"></script>
-  <script src="lessons/day-17-event-driven-architecture.js"></script>
-  <script src="lessons/day-18-distributed-transactions.js"></script>
-  <script src="lessons/day-19-saga-pattern.js"></script>
-  <script src="lessons/day-20-dead-letter-queues.js"></script>
-  <script src="lessons/day-21-cron-jobs.js"></script>
-  <script src="lessons/day-22-websockets.js"></script>
-  <script src="lessons/day-23-long-polling.js"></script>
-  <script src="lessons/day-24-server-sent-events.js"></script>
-  <script src="lessons/day-25-database-indexing.js"></script>
-  <script src="lessons/day-26-query-optimization.js"></script>
-  <script src="lessons/day-27-n-plus-one-queries.js"></script>
-  <script src="lessons/day-28-connection-pooling.js"></script>
-  <script src="lessons/day-29-read-replicas.js"></script>
-  <script src="lessons/day-30-sharding.js"></script>
-  <script src="lessons/day-31-partitioning.js"></script>
-  <script src="lessons/day-32-replication.js"></script>
-  <script src="lessons/day-33-leader-election-part-1.js"></script>
-  <script src="lessons/day-33-leader-election-part-2.js"></script>
-  <script src="lessons/day-33-leader-election-part-3.js"></script>
-  <script src="lessons/day-33-leader-election-part-4.js"></script>
-  <script src="lessons/day-33-leader-election-part-5.js"></script>
-  <script src="lessons/day-33-leader-election.js"></script>
-  <script src="lessons/day-34-cap-theorem.js"></script>
-  <script src="lessons/day-34-cap-theorem-part-2.js"></script>
-  <script src="lessons/day-34-cap-theorem-part-3.js"></script>
-  <script src="lessons/day-34-cap-theorem-part-4.js"></script>
-  <script src="lessons/day-35-eventual-consistency.js"></script>
-  <script src="lessons/day-35-eventual-consistency-part-2.js"></script>
-  <script src="lessons/day-35-eventual-consistency-part-3.js"></script>
-  <script src="lessons/day-35-eventual-consistency-part-4.js"></script>
-  <script src="lessons/day-35-eventual-consistency-part-5.js"></script>
-  <script src="lessons/day-35-eventual-consistency-part-6.js"></script>
-  <script src="lessons/day-35-eventual-consistency-part-7.js"></script>
-  <script src="lessons/day-35-eventual-consistency-part-8.js"></script>
-  <script src="lessons/day-35-eventual-consistency-part-9.js"></script>
-  <script src="lessons/day-36-optimistic-locking.js"></script>
-  <script src="lessons/day-36-optimistic-locking-part-2.js"></script>
-  <script src="lessons/day-36-optimistic-locking-part-3.js"></script>
-  <script src="lessons/day-36-optimistic-locking-part-4.js"></script>
-  <script src="lessons/day-36-optimistic-locking-part-5.js"></script>
-  <script src="app.js"></script>
-  <script src="visuals/core.js"></script>
-  <script src="visuals/day-01-components.js"></script>
-  <script src="visuals/day-01-rules-base.js"></script>
-  <script src="visuals/day-01-rules-more.js"></script>
-  <script src="visuals/day-01.js"></script>
+  <script type="text/plain" data-protected-src="data/roadmap.js"></script>
+  <script type="text/plain" data-protected-src="data/lessons.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-01-rate-limiting.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-01-rate-limiting-part-2.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-01-rate-limiting-part-3.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-01-rate-limiting-part-4.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-02-caching.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-03-load-balancing.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-04-reverse-proxies.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-05-api-gateways.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-06-cicd.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-07-docker.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-08-kubernetes.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-09-service-discovery.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-10-circuit-breakers.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-11-timeouts.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-12-retries.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-13-exponential-backoff.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-14-idempotency.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-15-message-queues.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-16-pubsub.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-17-event-driven-architecture.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-18-distributed-transactions.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-19-saga-pattern.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-20-dead-letter-queues.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-21-cron-jobs.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-22-websockets.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-23-long-polling.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-24-server-sent-events.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-25-database-indexing.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-26-query-optimization.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-27-n-plus-one-queries.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-28-connection-pooling.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-29-read-replicas.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-30-sharding.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-31-partitioning.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-32-replication.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-33-leader-election-part-1.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-33-leader-election-part-2.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-33-leader-election-part-3.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-33-leader-election-part-4.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-33-leader-election-part-5.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-33-leader-election.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-34-cap-theorem.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-34-cap-theorem-part-2.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-34-cap-theorem-part-3.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-34-cap-theorem-part-4.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-35-eventual-consistency.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-35-eventual-consistency-part-2.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-35-eventual-consistency-part-3.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-35-eventual-consistency-part-4.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-35-eventual-consistency-part-5.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-35-eventual-consistency-part-6.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-35-eventual-consistency-part-7.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-35-eventual-consistency-part-8.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-35-eventual-consistency-part-9.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-36-optimistic-locking.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-36-optimistic-locking-part-2.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-36-optimistic-locking-part-3.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-36-optimistic-locking-part-4.js"></script>
+  <script type="text/plain" data-protected-src="lessons/day-36-optimistic-locking-part-5.js"></script>
+  <script type="text/plain" data-protected-src="app.js"></script>
+  <script type="text/plain" data-protected-src="visuals/core.js"></script>
+  <script type="text/plain" data-protected-src="visuals/day-01-components.js"></script>
+  <script type="text/plain" data-protected-src="visuals/day-01-rules-base.js"></script>
+  <script type="text/plain" data-protected-src="visuals/day-01-rules-more.js"></script>
+  <script type="text/plain" data-protected-src="visuals/day-01.js"></script>
 </body>
 </html>
