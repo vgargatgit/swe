@@ -8,7 +8,11 @@
   function enhance(root = document) {
     const hash = window.location.hash || '';
     const isTarget = hash.includes(TARGET_SLUG);
-    root.classList?.toggle('visual-prototype', isTarget);
+    root.classList?.toggle('visual-chapter-01', isTarget);
+    root.classList?.toggle(
+      'visual-prototype',
+      isTarget || root.classList?.contains('visual-chapter-02')
+    );
     if (!isTarget) return;
 
     const supersededSections = new Set([
