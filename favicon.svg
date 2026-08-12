@@ -1,0 +1,16 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' role='img' aria-labelledby='title desc'>
+  <title id='title'>SWE Field Guide icon</title>
+  <desc id='desc'>A round badge with connected nodes and a lightning bolt.</desc>
+  <defs>
+    <linearGradient id='g' x1='10' y1='8' x2='54' y2='58' gradientUnits='userSpaceOnUse'>
+      <stop stop-color='#2f5bea'/>
+      <stop offset='1' stop-color='#00a889'/>
+    </linearGradient>
+  </defs>
+  <circle cx='32' cy='32' r='29' fill='url(#g)'/>
+  <path d='M20 38c5.5-7.5 11-7.5 16.5 0 2.4 3.2 5.7 3.2 9.8.1' fill='none' stroke='#fff' stroke-width='4' stroke-linecap='round'/>
+  <circle cx='19' cy='38' r='4' fill='#fff'/>
+  <circle cx='32' cy='27' r='4' fill='#fff'/>
+  <circle cx='47' cy='38' r='4' fill='#fff'/>
+  <path d='M33 10 25 30h8l-4 20 13-26h-9l6-14z' fill='#fff' opacity='.92'/>
+</svg>
