@@ -1,0 +1,234 @@
+[
+  {
+    "day": 2,
+    "title": "Caching",
+    "sourceCharacters": 14354,
+    "sections": 18,
+    "outputBytes": 22976,
+    "hasExtractionNote": false
+  },
+  {
+    "day": 3,
+    "title": "Load Balancing",
+    "sourceCharacters": 20624,
+    "sections": 22,
+    "outputBytes": 34029,
+    "hasExtractionNote": false
+  },
+  {
+    "day": 4,
+    "title": "Reverse Proxies",
+    "sourceCharacters": 20016,
+    "sections": 23,
+    "outputBytes": 33424,
+    "hasExtractionNote": false
+  },
+  {
+    "day": 5,
+    "title": "API Gateways",
+    "sourceCharacters": 12661,
+    "sections": 39,
+    "outputBytes": 24379,
+    "hasExtractionNote": false
+  },
+  {
+    "day": 6,
+    "title": "CI/CD",
+    "sourceCharacters": 20149,
+    "sections": 24,
+    "outputBytes": 29010,
+    "hasExtractionNote": true
+  },
+  {
+    "day": 7,
+    "title": "Docker",
+    "sourceCharacters": 11942,
+    "sections": 36,
+    "outputBytes": 23314,
+    "hasExtractionNote": false
+  },
+  {
+    "day": 8,
+    "title": "Kubernetes",
+    "sourceCharacters": 13131,
+    "sections": 41,
+    "outputBytes": 26214,
+    "hasExtractionNote": false
+  },
+  {
+    "day": 9,
+    "title": "Service Discovery",
+    "sourceCharacters": 11443,
+    "sections": 36,
+    "outputBytes": 23317,
+    "hasExtractionNote": false
+  },
+  {
+    "day": 10,
+    "title": "Circuit Breakers",
+    "sourceCharacters": 20149,
+    "sections": 22,
+    "outputBytes": 31255,
+    "hasExtractionNote": true
+  },
+  {
+    "day": 11,
+    "title": "Timeouts",
+    "sourceCharacters": 20149,
+    "sections": 34,
+    "outputBytes": 32014,
+    "hasExtractionNote": true
+  },
+  {
+    "day": 12,
+    "title": "Retries",
+    "sourceCharacters": 20149,
+    "sections": 31,
+    "outputBytes": 36730,
+    "hasExtractionNote": true
+  },
+  {
+    "day": 13,
+    "title": "Exponential Backoff",
+    "sourceCharacters": 20148,
+    "sections": 34,
+    "outputBytes": 37178,
+    "hasExtractionNote": true
+  },
+  {
+    "day": 14,
+    "title": "Idempotency",
+    "sourceCharacters": 20149,
+    "sections": 35,
+    "outputBytes": 35610,
+    "hasExtractionNote": true
+  },
+  {
+    "day": 15,
+    "title": "Message Queues",
+    "sourceCharacters": 20148,
+    "sections": 32,
+    "outputBytes": 37475,
+    "hasExtractionNote": true
+  },
+  {
+    "day": 16,
+    "title": "Pub/Sub",
+    "sourceCharacters": 20149,
+    "sections": 33,
+    "outputBytes": 38611,
+    "hasExtractionNote": true
+  },
+  {
+    "day": 17,
+    "title": "Event-Driven Architecture",
+    "sourceCharacters": 20149,
+    "sections": 38,
+    "outputBytes": 36434,
+    "hasExtractionNote": true
+  },
+  {
+    "day": 18,
+    "title": "Distributed Transactions",
+    "sourceCharacters": 14629,
+    "sections": 37,
+    "outputBytes": 28326,
+    "hasExtractionNote": false
+  },
+  {
+    "day": 19,
+    "title": "Saga Pattern",
+    "sourceCharacters": 20149,
+    "sections": 45,
+    "outputBytes": 35340,
+    "hasExtractionNote": true
+  },
+  {
+    "day": 20,
+    "title": "Dead Letter Queues",
+    "sourceCharacters": 16727,
+    "sections": 43,
+    "outputBytes": 30879,
+    "hasExtractionNote": false
+  },
+  {
+    "day": 21,
+    "title": "Cron Jobs",
+    "sourceCharacters": 14676,
+    "sections": 42,
+    "outputBytes": 28594,
+    "hasExtractionNote": false
+  },
+  {
+    "day": 22,
+    "title": "WebSockets",
+    "sourceCharacters": 15574,
+    "sections": 43,
+    "outputBytes": 28769,
+    "hasExtractionNote": false
+  },
+  {
+    "day": 23,
+    "title": "Long Polling",
+    "sourceCharacters": 20149,
+    "sections": 38,
+    "outputBytes": 32641,
+    "hasExtractionNote": true
+  },
+  {
+    "day": 24,
+    "title": "Server-Sent Events",
+    "sourceCharacters": 20149,
+    "sections": 37,
+    "outputBytes": 33717,
+    "hasExtractionNote": true
+  },
+  {
+    "day": 25,
+    "title": "Database Indexing",
+    "sourceCharacters": 20149,
+    "sections": 40,
+    "outputBytes": 36476,
+    "hasExtractionNote": true
+  },
+  {
+    "day": 26,
+    "title": "Query Optimization",
+    "sourceCharacters": 20149,
+    "sections": 42,
+    "outputBytes": 35486,
+    "hasExtractionNote": true
+  },
+  {
+    "day": 27,
+    "title": "N+1 Queries",
+    "sourceCharacters": 20149,
+    "sections": 33,
+    "outputBytes": 35267,
+    "hasExtractionNote": true
+  },
+  {
+    "day": 28,
+    "title": "Connection Pooling",
+    "sourceCharacters": 20149,
+    "sections": 33,
+    "outputBytes": 31828,
+    "hasExtractionNote": true
+  },
+  {
+    "day": 29,
+    "title": "Read Replicas",
+    "sourceCharacters": 20149,
+    "sections": 33,
+    "outputBytes": 33085,
+    "hasExtractionNote": true
+  },
+  {
+    "day": 30,
+    "title": "Sharding",
+    "sourceCharacters": 20148,
+    "sections": 31,
+    "outputBytes": 33341,
+    "hasExtractionNote": true
+  }
+]
