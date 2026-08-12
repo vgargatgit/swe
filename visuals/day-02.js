@@ -36,6 +36,13 @@
     }
   }
 
+  function hideParagraphs(section, exactTexts) {
+    const hidden = new Set(exactTexts);
+    section.querySelectorAll('.section-body > p').forEach((paragraph) => {
+      if (hidden.has(paragraph.textContent.trim())) paragraph.classList.add('vf-superseded-copy');
+    });
+  }
+
   function enhanceSection(section) {
     if (section.dataset.chapter2Visualized === 'true') return;
     const heading = section.querySelector(':scope > h2');
@@ -56,6 +63,7 @@
       case '10. Eviction versus expiration':
         insertVisuals(section, [expirationVsEviction()]);
         section.querySelectorAll('.code-block').forEach((block) => block.classList.add('vf-superseded-block'));
+        hideParagraphs(section, ['Expiration:', 'Eviction:']);
         break;
       case '11. Cache key design':
         insertVisuals(section, [cacheKeyComposition()]);
@@ -67,14 +75,17 @@
         insertVisuals(section, [impactDashboard()]);
         break;
       case '15. Interview scenario': {
-        insertVisuals(section, [interviewChecklist()]);
         const originalList = section.querySelector('.section-body > ol');
+        const visual = createNode(interviewChecklist());
+        if (visual && originalList) originalList.insertAdjacentElement('beforebegin', visual);
+        else if (visual) heading.insertAdjacentElement('afterend', visual);
         originalList?.classList.add('vf-superseded-list');
         break;
       }
       case 'Production mental model':
         insertVisuals(section, [cacheLayers()]);
         section.querySelectorAll('.code-block').forEach((block) => block.classList.add('vf-superseded-block'));
+        hideParagraphs(section, ["Don't think:", 'Think:', 'Each layer answers different questions:']);
         break;
       case "Today's design exercise":
         insertVisuals(section, [endpointCanvas()]);
