@@ -39,7 +39,10 @@
   function hideParagraphs(section, exactTexts) {
     const hidden = new Set(exactTexts);
     section.querySelectorAll('.section-body > p').forEach((paragraph) => {
-      if (hidden.has(paragraph.textContent.trim())) paragraph.classList.add('vf-superseded-copy');
+      if (hidden.has(paragraph.textContent.trim())) {
+        paragraph.classList.add('vf-superseded-copy');
+        paragraph.hidden = true;
+      }
     });
   }
 
