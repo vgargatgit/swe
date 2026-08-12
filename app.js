@@ -20,9 +20,13 @@ function renderMermaid(source) {
   return `<div class="mermaid">${esc(source)}</div>`;
 }
 
+function hasFullLesson(lesson) {
+  return Boolean((window.FULL_LESSONS || {})[lesson.slug]);
+}
+
 function statusPill(lesson) {
-  if (lesson.status === 'expanded') return '<span class="status status-expanded">Expanded</span>';
-  if (lesson.day <= 36) return '<span class="status status-published">Backfill</span>';
+  if (hasFullLesson(lesson)) return '<span class="status status-expanded">Full text</span>';
+  if (lesson.day <= 36) return '<span class="status status-published">Needs transcript</span>';
   return '<span class="status status-upcoming">Upcoming</span>';
 }
 
@@ -37,6 +41,7 @@ function route() {
 
 function renderHome() {
   const published = LESSONS.filter((lesson) => lesson.day <= 36);
+  const fullCount = published.filter((lesson) => hasFullLesson(lesson)).length;
   const next = ROADMAP.slice(36, 48);
   app.innerHTML = `
     <section class="hero">
@@ -53,7 +58,7 @@ function renderHome() {
         <div class="eyebrow">Course status</div>
         <div class="metrics">
           <div class="metric"><strong>${published.length}</strong><span>lessons taught so far</span></div>
-          <div class="metric"><strong>${LESSONS.filter((l) => l.status === 'expanded').length}</strong><span>full-depth lesson converted</span></div>
+          <div class="metric"><strong>${fullCount}</strong><span>full-text lessons imported</span></div>
           <div class="metric"><strong>${ROADMAP.length}</strong><span>total planned topics</span></div>
         </div>
       </aside>
@@ -106,10 +111,7 @@ function renderLesson(slug) {
       <main class="content">
         <aside class="quote-card"><small>Core principle</small><p>${esc(full.core)}</p></aside>
         ${full.sections.map((section, index) => renderSection(section, index)).join('')}
-        <section class="lesson-section" id="key-takeaways">
-          <h2>Key takeaways</h2>
-          <div class="section-body"><ul class="checklist">${full.keyTakeaways.map((item) => `<li>${esc(item)}</li>`).join('')}</ul></div>
-        </section>
+        ${Array.isArray(full.keyTakeaways) && full.keyTakeaways.length ? `<section class="lesson-section" id="key-takeaways"><h2>Key takeaways</h2><div class="section-body"><ul class="checklist">${full.keyTakeaways.map((item) => `<li>${esc(item)}</li>`).join('')}</ul></div></section>` : ''}
         ${renderNav(summary)}
       </main>
       <aside class="sidebar">
@@ -117,7 +119,7 @@ function renderLesson(slug) {
           <div class="eyebrow">On this page</div>
           <ul>
             ${full.sections.map((section, index) => `<li><a href="#section-${index + 1}">${esc(section.title)}</a></li>`).join('')}
-            <li><a href="#key-takeaways">Key takeaways</a></li>
+            ${Array.isArray(full.keyTakeaways) && full.keyTakeaways.length ? '<li><a href="#key-takeaways">Key takeaways</a></li>' : ''}
           </ul>
         </div>
       </aside>
@@ -140,7 +142,7 @@ function renderCompactLesson(lesson) {
       <div class="eyebrow">Day ${lesson.day}</div>
       <h1>${esc(lesson.title)}</h1>
       <p class="lead">${esc(lesson.summary)}</p>
-      <div class="meta"><span class="pill">Backfill pending</span><span class="pill">Compact version</span></div>
+      <div class="meta"><span class="pill">Full transcript needed</span><span class="pill">Compact placeholder</span></div>
     </header>
     <div class="layout">
       <main class="content">
@@ -149,13 +151,12 @@ function renderCompactLesson(lesson) {
           ${renderMermaid(lesson.diagram)}
         </section>
         <section class="lesson-section">
-          <h2>Full lesson backfill</h2>
-          <div class="section-body"><p>This lesson still uses the compact first-pass content. The site is now ready for full-depth lesson pages, and Day 36 shows the expanded template that will be used for backfilling earlier lessons.</p>
-          <p>The expanded version will preserve the original scheduled-chat depth: mental models, implementation patterns, production traps, incidents, interview answers, and checklists.</p></div>
+          <h2>Awaiting original chat content</h2>
+          <div class="section-body"><p>This page is intentionally not marked as fully converted. It still needs the original scheduled-chat lesson text imported so the website preserves the full lesson, not a summary.</p></div>
         </section>
         ${renderNav(lesson)}
       </main>
-      <aside class="sidebar"><div class="card"><div class="eyebrow">Status</div><p>Compact card migrated. Full content not yet backfilled.</p></div></aside>
+      <aside class="sidebar"><div class="card"><div class="eyebrow">Status</div><p>Compact placeholder only. Import the full scheduled-chat transcript for this day.</p></div></aside>
     </div>`;
   renderDiagrams();
 }
