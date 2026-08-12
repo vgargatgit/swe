@@ -21,6 +21,7 @@
     cacheConsumers,
     invalidationFanout,
     cacheLayers,
+    comparison,
     pipeline
   } = global.SWEChapter2Visuals;
 
@@ -90,7 +91,14 @@
         const value = flat(text);
         return value.includes('database = price 900') && value.includes('cache = empty');
       },
-      render: () => stateSnapshot('₹900', 'empty', 'amber', 'Initial state')
+      render: () => comparison({
+        eyebrow: 'Initial state',
+        title: 'The database has a value, but no cached copy exists yet',
+        items: [
+          { title: 'Database', value: '₹900', subtitle: 'authoritative value', icon: 'database', tone: 'green' },
+          { title: 'Cache', value: 'empty', subtitle: 'the next reader will load and populate it', icon: 'redis', tone: 'amber' }
+        ]
+      })
     },
     {
       test: (text) => {
