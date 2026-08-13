@@ -24,6 +24,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Validate course visual coverage
+        run: node tools/validate-course-visuals.mjs
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
