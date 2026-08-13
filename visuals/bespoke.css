@@ -1,0 +1,55 @@
+.visual-bespoke .lesson-section {
+  position: relative;
+}
+
+.visual-bespoke .lesson-section > .vf-bespoke:first-of-type {
+  margin-top: 1rem;
+}
+
+.visual-bespoke .vf-bespoke {
+  border-top: 4px solid color-mix(in srgb, var(--accent) 78%, #7c3aed);
+}
+
+.visual-bespoke .vf-bespoke::before {
+  content: 'CHAPTER-SPECIFIC MODEL';
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  z-index: 2;
+  border: 1px solid rgba(47, 91, 234, .18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .82);
+  color: #64748b;
+  padding: 4px 8px;
+  font-size: .58rem;
+  font-weight: 900;
+  letter-spacing: .11em;
+  backdrop-filter: blur(8px);
+}
+
+.visual-bespoke .vf-bespoke-auto {
+  border-left: 3px solid rgba(124, 58, 237, .48);
+}
+
+.visual-bespoke .vf-superseded-block,
+.visual-bespoke .vf-superseded-list,
+.visual-bespoke .vf-superseded-copy,
+.visual-bespoke .vf-superseded-diagram {
+  display: none !important;
+}
+
+.visual-bespoke .vf-course-sequence,
+.visual-bespoke .vf-course-state-machine,
+.visual-bespoke .vf-course-topology,
+.visual-bespoke .vf-course-fanout,
+.visual-bespoke .vf-course-decision {
+  margin-top: .25rem;
+}
+
+@media (max-width: 720px) {
+  .visual-bespoke .vf-bespoke::before {
+    position: static;
+    display: inline-flex;
+    margin: -4px 0 12px;
+  }
+}

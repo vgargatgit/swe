@@ -25,7 +25,19 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Validate course visual coverage
-        run: node tools/validate-course-visuals.mjs
+        run: |
+          node tools/validate-course-visuals.mjs
+          node tools/validate-bespoke-visuals.mjs
+          for file in \
+            visuals/bespoke-dsl.js \
+            visuals/bespoke-04-12.js \
+            visuals/bespoke-13-21.js \
+            visuals/bespoke-22-29.js \
+            visuals/bespoke-30-36.js \
+            visuals/bespoke.js \
+            visuals/course.js; do
+            node --check "$file"
+          done
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
